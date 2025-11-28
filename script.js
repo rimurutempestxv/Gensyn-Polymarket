@@ -4,7 +4,7 @@ const bets = [
     {
         id: 1,
         topic: "Gensyn Mainnet Launch",
-        detail: "Will Gensyn launch a new product on the testnet before January 2026?",
+        detail: "Will Gensyn launch Mainnet before January 2026?",
         volume: "1.2M",
         chance: 65,
         endDate: "Jan 1, 2026",
@@ -12,15 +12,42 @@ const bets = [
     },
     {
         id: 2,
-        topic: "Social Growth Target",
-        detail: "Will Gensyn X account exceed 100k followers before January 2026?",
-        volume: "450K",
-        chance: 82,
-        endDate: "Jan 1, 2026",
-        category: "Social"
+        topic: "Research Publication",
+        detail: "Will Gensyn publish a new research article before December 15, 2025?",
+        volume: "320K",
+        chance: 75,
+        endDate: "Dec 15, 2025",
+        category: "Research"
     },
     {
         id: 3,
+        topic: "CodeAssist Milestone",
+        detail: "Will Gensyn CodeAssist cross 70K models trained before January 2026?",
+        volume: "1.8M",
+        chance: 60,
+        endDate: "Jan 1, 2026",
+        category: "AI"
+    },
+    {
+        id: 4,
+        topic: "BlockAssist Achievement",
+        detail: "Will Gensyn BlockAssist cross 1.5 million models trained?",
+        volume: "2.5M",
+        chance: 45,
+        endDate: "Jan 1, 2026",
+        category: "AI"
+    },
+    {
+        id: 5,
+        topic: "Community Growth",
+        detail: "Will Gensyn Hub cross over 15K followers before February 2026?",
+        volume: "950K",
+        chance: 70,
+        endDate: "Feb 1, 2026",
+        category: "Social"
+    },
+    {
+        id: 6,
         topic: "Node Expansion",
         detail: "Will Gensyn Active nodes exceed 40k before January 2026?",
         volume: "2.8M",
@@ -29,7 +56,7 @@ const bets = [
         category: "Infrastr."
     },
     {
-        id: 4,
+        id: 7,
         topic: "Testnet User Base",
         detail: "Will Gensyn Users on the testnet cross over 200k users before 2026?",
         volume: "890K",
@@ -38,7 +65,7 @@ const bets = [
         category: "Growth"
     },
     {
-        id: 5,
+        id: 8,
         topic: "Transaction Volume",
         detail: "Will Gensyn transactions exceed over 100M before January 2026?",
         volume: "3.1M",
@@ -266,7 +293,7 @@ function enterMarket() {
 
 function renderMarket() {
     const grid = document.getElementById('market-grid');
-    grid.innerHTML = bets.map((bet, index) => {
+    let html = bets.map((bet, index) => {
         const yesColor = 'text-semantic-success';
         const noColor = 'text-semantic-error';
         
@@ -318,6 +345,23 @@ function renderMarket() {
             </div>
         </div>
     `}).join('');
+
+    // Add community suggestion link
+    html += `
+        <div class="col-span-full bg-neutral-bgElevated/50 border border-neutral-border/30 hover:border-brand/30 rounded-lg p-6 text-center transition-all duration-200">
+            <i data-lucide="lightbulb" class="w-8 h-8 text-brand mx-auto mb-3"></i>
+            <h3 class="text-base font-medium text-neutral-text mb-2">Have a market suggestion?</h3>
+            <p class="text-sm text-neutral-textMuted mb-4">We'd love to hear your ideas for new prediction markets!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSePVmcGA94rzvtloph8xP6KoAZgpmiv5zYV3bz2J3FupRen7w/viewform?usp=publish-editor" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 text-brand hover:text-brand-light text-sm font-medium group">
+                Suggest a market
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+            </a>
+        </div>`;
+
+    grid.innerHTML = html;
     lucide.createIcons();
     
     // Add entrance animations to cards
