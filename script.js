@@ -115,14 +115,28 @@ let state = {
 // --- Init ---
 document.addEventListener('DOMContentLoaded', function() {
     lucide.createIcons();
+    
+    // Re-initialize icons after any dynamic content is added
+    const observer = new MutationObserver(() => {
+        lucide.createIcons();
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 });
 
 // --- Core Logic ---
 function enterMarket() {
     const input = document.getElementById('username-input');
     if (!input.value.trim()) {
-        input.classList.add('ring-2', 'ring-semantic-error');
-        setTimeout(() => input.classList.remove('ring-2', 'ring-semantic-error'), 500);
+        input.classList.add('walkwin-input-error');
+        input.style.borderColor = '#EF4444';
+        setTimeout(() => {
+            input.classList.remove('walkwin-input-error');
+            input.style.borderColor = '';
+        }, 500);
         return;
     }
     state.username = input.value.trim();
