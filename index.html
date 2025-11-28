@@ -8,7 +8,7 @@
     <!-- Fonts: Inter & JetBrains Mono as per Design System -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -81,33 +81,99 @@
         <div class="walkwin-content animate-fade-in">
             <!-- Animated Gensyn Text -->
             <div class="walkwin-logo-container mb-8">
-                <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-light animate-gradient">
-                    <span class="inline-block">G</span>
-                    <span class="inline-block">e</span>
-                    <span class="inline-block">n</span>
-                    <span class="inline-block">s</span>
-                    <span class="inline-block">y</span>
-                    <span class="inline-block">n</span>
+                <h1 class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand via-brand-light to-brand-dark">
+                    <span id="gensyn-text" class="inline-block"></span><span class="blinking-cursor">|</span>
                 </h1>
                 <style>
-                    @keyframes gradient {
-                        0% { background-position: 0% 50%; }
-                        50% { background-position: 100% 50%; }
-                        100% { background-position: 0% 50%; }
+                    .walkwin-logo-container h1 {
+                        font-family: 'Poppins', sans-serif;
+                        letter-spacing: 0.5px;
+                        line-height: 1.2;
+                        text-shadow: 0 2px 15px rgba(158, 78, 55, 0.4);
+                        min-height: 1.5em;
+                        -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1);
                     }
-                    .animate-gradient {
-                        background-size: 200% 200%;
-                        animation: gradient 3s ease infinite;
+                    
+                    .blinking-cursor {
+                        font-weight: 300;
+                        color: #ff9c7c;
+                        animation: blink 0.8s step-end infinite;
+                        margin-left: 2px;
+                        text-shadow: 0 0 8px rgba(255, 156, 124, 0.7);
                     }
-                    .walkwin-logo-container span {
+                    
+                    @keyframes blink {
+                        from, to { opacity: 1; }
+                        50% { opacity: 0; }
+                    }
+                    
+                    #gensyn-text span {
                         display: inline-block;
-                        transition: transform 0.3s ease, text-shadow 0.3s ease;
+                        transform: translateY(0);
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        position: relative;
                     }
-                    .walkwin-logo-container span:hover {
-                        transform: translateY(-5px);
-                        text-shadow: 0 5px 15px rgba(158, 78, 55, 0.4);
+                    
+                    #gensyn-text span:hover {
+                        transform: translateY(-4px);
+                        text-shadow: 0 8px 20px rgba(191, 99, 75, 0.7);
+                    }
+                    
+                    #gensyn-text span::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background: linear-gradient(90deg, #ff9c7c, #bf634b);
+                        transform: scaleX(0);
+                        transform-origin: right;
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    #gensyn-text span:hover::after {
+                        transform: scaleX(1);
+                        transform-origin: left;
                     }
                 </style>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const text = 'Gensyn';
+                        const element = document.getElementById('gensyn-text');
+                        let i = 0;
+                        
+                        function typeWriter() {
+                            if (i < text.length) {
+                                const span = document.createElement('span');
+                                span.textContent = text.charAt(i);
+                                span.style.opacity = '0';
+                                span.style.animation = 'fadeIn 0.5s forwards';
+                                span.style.animationDelay = (i * 0.15) + 's';
+                                element.appendChild(span);
+                                i++;
+                                setTimeout(typeWriter, 150);
+                            } else {
+                                // Hide cursor when done
+                                const cursor = document.querySelector('.blinking-cursor');
+                                if (cursor) cursor.style.display = 'none';
+                            }
+                        }
+                        
+                        // Add fadeIn animation
+                        const style = document.createElement('style');
+                        style.textContent = `
+                            @keyframes fadeIn {
+                                from { opacity: 0; transform: translateY(10px); }
+                                to { opacity: 1; transform: translateY(0); }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                        
+                        // Start the animation
+                        setTimeout(typeWriter, 500);
+                    });
+                </script>
                     <rect x="0" y="36" width="6" height="6" fill="#FFB6C1" class="logo-border-left"/>
                     <!-- Right side -->
                     <rect x="42" y="6" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
@@ -203,9 +269,29 @@
 
     <!-- View: Dashboard (Trading Terminal) -->
     <div id="view-market" class="hidden min-h-screen flex bg-neutral-bg">
+        <!-- Mobile Menu Overlay (hidden by default) -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 z-40 hidden md:hidden"></div>
+        
+        <!-- Modern Mobile Menu Button (fixed at top left on mobile) -->
+        <button id="mobile-menu-button" class="fixed top-3 left-3 w-11 h-11 bg-neutral-surface/90 hover:bg-neutral-surface flex flex-col items-center justify-center rounded-xl border border-neutral-border/50 z-40 md:hidden transition-all duration-300 ease-out shadow-lg hover:shadow-xl hover:scale-105 group overflow-hidden">
+            <div class="relative w-5 h-5 flex flex-col justify-between my-1.5">
+                <span class="block w-5 h-0.5 bg-neutral-text rounded-full transition-all duration-300 transform group-hover:translate-y-1.5 group-hover:rotate-45"></span>
+                <span class="block w-5 h-0.5 bg-neutral-text rounded-full transition-all duration-200 opacity-100 group-hover:opacity-0"></span>
+                <span class="block w-5 h-0.5 bg-neutral-text rounded-full transition-all duration-300 transform group-hover:-translate-y-1.5 group-hover:-rotate-45"></span>
+            </div>
+            <span class="absolute -bottom-6 text-[9px] font-medium text-neutral-textMuted opacity-0 group-hover:opacity-100 transition-opacity duration-200">Menu</span>
+        </button>
+        <style>
+            #mobile-menu-button:hover .hamburger-line {
+                background-color: #bf634b; /* brand color */
+            }
+            #mobile-menu-button:active {
+                transform: scale(0.95);
+            }
+        </style>
         
         <!-- Sidebar -->
-        <aside class="w-64 bg-neutral-bgElevated border-r border-neutral-border flex-col hidden md:flex">
+        <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 h-screen bg-neutral-bgElevated border-r border-neutral-border flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50 md:z-10 overflow-y-auto">
             <div class="h-16 flex items-center px-6 border-b border-neutral-border gap-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-brand">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2H14V4H16V6H18V8H20V10H22V14H20V16H18V18H16V20H14V22H10V20H8V18H6V16H4V14H2V10H4V8H6V6H8V4H10V2ZM10 6H14V8H16V10H18V14H16V16H14V18H10V16H8V14H6V10H8V8H10V6Z" fill="currentColor"/>
@@ -267,9 +353,11 @@
         <!-- Main Content -->
         <main class="flex-1 flex flex-col h-screen overflow-hidden">
             <!-- Topbar -->
-            <header class="h-16 bg-neutral-bgElevated border-b border-neutral-border flex items-center justify-between px-6 shrink-0">
+            <header class="h-16 bg-neutral-bgElevated border-b border-neutral-border flex items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div class="flex items-center gap-4 flex-1">
-                    <button class="md:hidden text-neutral-textSec"><i data-lucide="menu"></i></button>
+                    <button id="mobile-sidebar-toggle" class="md:hidden text-neutral-text hover:text-neutral-textSec transition-colors">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
                     <!-- Search Bar -->
                     <div class="relative w-full max-w-md hidden md:block">
                         <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-textMuted"></i>
@@ -318,17 +406,17 @@
                 </div>
 
                 <!-- Market Grid -->
-                <div id="market-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div id="market-grid" class="grid grid-cols-1 gap-3 p-3 sm:gap-4 sm:p-4 sm:grid-cols-2 lg:grid-cols-3 lg:p-6 overflow-y-auto flex-1">
                     <!-- Cards injected via JS -->
                 </div>
                 
-                <!-- Built by Tempest Footer -->
-                <div class="mt-12 pt-8 border-t border-neutral-border text-center animate-fade-in">
-                    <p class="text-xs text-neutral-textMuted font-mono mb-2">Built by</p>
+                <!-- Bet Card Footer -->
+                <div class="mt-12 pt-8 border-t border-neutral-border/50 text-center animate-fade-in">
                     <a href="https://x.com/rimtempestx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-brand hover:text-brand-light transition-colors font-medium group">
-                        <span>Tempest</span>
+                        <span>Made By Tempest</span>
                         <i data-lucide="external-link" class="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
                     </a>
+                    <p class="mt-1 text-xs text-neutral-textMuted">Show some love by giving a follow!</p>
                 </div>
             </div>
         </main>
@@ -390,11 +478,17 @@
                     </div>
                 </div>
 
-                <!-- Action -->
-                <button onclick="confirmBet()" class="w-full bg-brand hover:bg-brand-light text-white font-semibold py-3.5 rounded-lg shadow-elevation-md transition-all flex items-center justify-center gap-2">
-                    Execute Trade
-                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </button>
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                    <button onclick="closeModal()" class="flex-1 border border-neutral-border hover:bg-neutral-surfaceHover text-neutral-text font-medium py-3.5 rounded-lg transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span>Go Back</span>
+                    </button>
+                    <button onclick="confirmBet()" class="flex-1 bg-brand hover:bg-brand-light text-white font-semibold py-3.5 rounded-lg shadow-elevation-md transition-all flex items-center justify-center gap-2">
+                        <span>Execute Trade</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
