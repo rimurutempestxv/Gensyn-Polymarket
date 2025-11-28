@@ -127,7 +127,113 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// --- Mobile Sidebar ---
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize variables
+    const sidebar = document.getElementById('sidebar');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileSidebarToggle = document.getElementById('mobile-sidebar-toggle');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    let isSidebarOpen = false;
+
+    // Function to toggle sidebar
+    function toggleSidebar() {
+        isSidebarOpen = !isSidebarOpen;
+        if (isSidebarOpen) {
+            sidebar.classList.remove('-translate-x-full');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // Change icon to 'X' when open
+            const menuIcons = document.querySelectorAll('#mobile-menu-button i, #mobile-sidebar-toggle i');
+            menuIcons.forEach(icon => {
+                icon.setAttribute('data-lucide', 'x');
+                lucide.createIcons();
+            });
+        } else {
+            sidebar.classList.add('-translate-x-full');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+            // Change icon back to 'menu' when closed
+            const menuIcons = document.querySelectorAll('#mobile-menu-button i, #mobile-sidebar-toggle i');
+            menuIcons.forEach(icon => {
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        }
+    }
+
+    // Add event listeners if elements exist
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+    }
+
+    if (mobileSidebarToggle) {
+        mobileSidebarToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+    }
+
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', toggleSidebar);
+    }
+
+    // Close sidebar when clicking a nav link on mobile
+    const navLinks = document.querySelectorAll('#sidebar a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                toggleSidebar();
+            }
+        });
+    });
+
+    // Handle window resize
+    function handleResize() {
+        if (window.innerWidth >= 768) {
+            // Desktop view
+            sidebar.classList.remove('-translate-x-full');
+            if (mobileMenuOverlay) mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        } else if (!isSidebarOpen) {
+            // Mobile view and sidebar is closed
+            sidebar.classList.add('-translate-x-full');
+        }
+    }
+
+    // Initial setup
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    // Initialize mobile menu button visibility
+    function updateMobileMenuButton() {
+        if (mobileMenuButton) {
+            mobileMenuButton.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+        }
+    }
+
+    updateMobileMenuButton();
+    window.addEventListener('resize', updateMobileMenuButton);
+});
+
 // --- Core Logic ---
+// Initialize mobile menu button visibility
+function updateMobileMenuButton() {
+    if (mobileMenuButton) {
+        mobileMenuButton.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+    }
+}
+
+// Call on page load
+updateMobileMenuButton();
+
+// Update on window resize
+window.addEventListener('resize', updateMobileMenuButton);
+
 function enterMarket() {
     const input = document.getElementById('username-input');
     if (!input.value.trim()) {
@@ -203,11 +309,12 @@ function renderMarket() {
             </div>
 
             <!-- Footer -->
-            <div class="mt-5 pt-4 border-t border-neutral-border flex justify-between items-center text-xs text-neutral-textMuted">
-                <span class="font-mono">Ends ${bet.endDate}</span>
-                <span class="flex items-center gap-1 group-hover:text-brand transition-colors font-medium">
-                    Trade <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </span>
+            <div class="mt-5 pt-4 border-t border-neutral-border flex justify-between items-center">
+                <span class="text-xs font-mono text-neutral-textMuted">Ends ${bet.endDate}</span>
+                <button class="bg-brand/10 hover:bg-brand/20 text-brand font-medium text-xs px-3 py-1.5 rounded-md flex items-center gap-1.5 transition-all duration-200 hover:gap-2 group">
+                    <span>Trade Now</span>
+                    <i data-lucide="arrow-up-right" class="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                </button>
             </div>
         </div>
     `}).join('');
