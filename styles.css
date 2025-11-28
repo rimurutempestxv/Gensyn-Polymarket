@@ -1,0 +1,198 @@
+body {
+    background-color: #0F1117;
+    color: #F9FAFB;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #1A1D29; 
+}
+::-webkit-scrollbar-thumb {
+    background: #3A3D4A; 
+    border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4B4E5C; 
+}
+
+.glass-panel {
+    background: rgba(26, 29, 41, 0.95);
+    backdrop-filter: blur(8px);
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide In Animation */
+.animate-slide-in {
+    animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0; 
+        transform: translateX(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+/* Scale In Animation */
+.animate-scale-in {
+    animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes scaleIn {
+    from { 
+        opacity: 0; 
+        transform: scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+}
+
+/* Pulse Animation */
+.animate-pulse-slow {
+    animation: pulseSlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseSlow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Bounce In Animation */
+.animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-50px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Shimmer Animation */
+.animate-shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(
+        90deg,
+        rgba(158, 78, 55, 0.1) 0%,
+        rgba(158, 78, 55, 0.2) 50%,
+        rgba(158, 78, 55, 0.1) 100%
+    );
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Card Hover Animation */
+.market-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.market-card:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Stagger Animation for Cards */
+.market-card-animate {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glow Animation */
+.animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(158, 78, 55, 0.2), 0 0 10px rgba(158, 78, 55, 0.2);
+    }
+    to {
+        box-shadow: 0 0 10px rgba(158, 78, 55, 0.4), 0 0 20px rgba(158, 78, 55, 0.4), 0 0 30px rgba(158, 78, 55, 0.2);
+    }
+}
+
+/* Rotate Animation */
+.animate-rotate-slow {
+    animation: rotateSlow 3s linear infinite;
+}
+
+@keyframes rotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Shake Animation */
+.animate-shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translateX(-2px);
+    }
+    20%, 80% {
+        transform: translateX(4px);
+    }
+    30%, 50%, 70% {
+        transform: translateX(-4px);
+    }
+    40%, 60% {
+        transform: translateX(4px);
+    }
+}
+
