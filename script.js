@@ -113,8 +113,8 @@ const bets = [
     },
     {
         id: 10,
-        topic: "Community Reach 30k Followers",
-        detail: "Will Gensyn Community Account Reach 30k followers before December 15?",
+        topic: "Community Mod Reach 30k Followers",
+        detail: "Will Gensyn Community Mod JoVar reach 30k followers before December 15?",
         volume: "550K",
         chance: 45,
         endDate: "Dec 15, 2025",
@@ -129,6 +129,44 @@ const bets = [
         chance: 35,
         endDate: "Dec 15, 2025",
         category: "Social"
+    },
+    // New AI Training Milestones
+    {
+        id: 12,
+        topic: "2M Models Trained",
+        detail: "Will Gensyn train over 2 Million Models before January 2, 2026?",
+        volume: "1.2M",
+        chance: 55,
+        endDate: "Jan 2, 2026",
+        category: "AI"
+    },
+    {
+        id: 13,
+        topic: "RLSwarm Node Growth",
+        detail: "Will Gensyn RLSwarm exceed 60k Nodes before February 1, 2026?",
+        volume: "1.8M",
+        chance: 65,
+        endDate: "Feb 1, 2026",
+        category: "Infrastr."
+    },
+    {
+        id: 14,
+        topic: "RLSwarm Model Training",
+        detail: "Will Gensyn RLSwarm exceed 300k Models trained before February 1, 2026?",
+        volume: "2.1M",
+        chance: 48,
+        endDate: "Feb 1, 2026",
+        category: "AI"
+    },
+    // New Event Bet
+    {
+        id: 15,
+        topic: "Lagos Meetup Event",
+        detail: "Will Gensyn Host a Meetup Event in Lagos before January 2026?",
+        volume: "680K",
+        chance: 40,
+        endDate: "Jan 1, 2026",
+        category: "Community"
     }
 ];
 
