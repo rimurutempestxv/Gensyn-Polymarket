@@ -134,7 +134,7 @@ const bets = [
     {
         id: 12,
         topic: "2M Models Trained",
-        detail: "Will Gensyn train over 2 Million Models before January 2, 2026?",
+        detail: "Will Gensyn train over 3 Million Models before January 2, 2026?",
         volume: "1.2M",
         chance: 55,
         endDate: "Jan 2, 2026",
@@ -641,4 +641,5 @@ function downloadCard() {
 function returnToMarket() {
     document.getElementById('view-card').classList.add('hidden');
 }
+
 
