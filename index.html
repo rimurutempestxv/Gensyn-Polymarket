@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gensyn Community Market | Bet Terminal</title>
     
-    <!-- Fonts: Inter & JetBrains Mono as per Design System -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
     
@@ -27,9 +24,9 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        // Converge Design System Palette
+                        // Original Converge Palette
                         brand: {
-                            DEFAULT: '#9e4e37', // Gensyn Identity Preserved
+                            DEFAULT: '#9e4e37',
                             light: '#bf634b',
                             dark: '#7a3a2a',
                             dim: 'rgba(158, 78, 55, 0.1)'
@@ -43,10 +40,10 @@
                             info: '#3B82F6'
                         },
                         neutral: {
-                            bg: '#0F1117',      // background
-                            bgElevated: '#1A1D29', // backgroundElevated
-                            bgSurface: '#23262F', // backgroundElevated2
-                            surface: '#2C2F3A',    // surface
+                            bg: '#0F1117',
+                            bgElevated: '#1A1D29',
+                            bgSurface: '#23262F',
+                            surface: '#2C2F3A',
                             surfaceHover: '#353845',
                             border: '#3A3D4A',
                             borderLight: '#4B4E5C',
@@ -54,6 +51,16 @@
                             textSec: '#D1D5DB',
                             textTer: '#9CA3AF',
                             textMuted: '#6B7280'
+                        },
+                        // Protocol Palette
+                        hyper: {
+                            bg: '#1A1F3A',
+                            bgDark: '#0F1424',
+                            green: '#00FF88',
+                            greenDim: 'rgba(0, 255, 136, 0.1)',
+                            orange: '#FF9500',
+                            orangeDim: 'rgba(255, 149, 0, 0.1)',
+                            border: '#2D3748'
                         }
                     },
                     boxShadow: {
@@ -62,6 +69,8 @@
                         'elevation-md': '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4)',
                         'elevation-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5)',
                         'elevation-xl': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5)',
+                        'hyper-glow': '0 0 20px rgba(0, 255, 136, 0.15)',
+                        'hyper-glow-orange': '0 0 20px rgba(255, 149, 0, 0.15)',
                     }
                 }
             }
@@ -70,16 +79,11 @@
 </head>
 <body class="min-h-screen flex flex-col font-sans antialiased selection:bg-brand selection:text-white overflow-hidden">
 
-    <!-- View: Onboarding (Terminal Access) - WalkWin Design System -->
     <div id="view-intro" class="fixed inset-0 z-50 flex flex-col bg-neutral-bg walkwin-container">
-        <!-- Header -->
         <header class="walkwin-header">
-            <!-- Empty header for spacing -->
-        </header>
+            </header>
 
-        <!-- Content Area -->
         <div class="walkwin-content animate-fade-in">
-            <!-- Animated Gensyn Text -->
             <div class="walkwin-logo-container mb-8">
                 <h1 class="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand via-brand-light to-brand-dark">
                     <span id="gensyn-text" class="inline-block"></span><span class="blinking-cursor">|</span>
@@ -154,13 +158,11 @@
                                 i++;
                                 setTimeout(typeWriter, 150);
                             } else {
-                                // Hide cursor when done
                                 const cursor = document.querySelector('.blinking-cursor');
                                 if (cursor) cursor.style.display = 'none';
                             }
                         }
                         
-                        // Add fadeIn animation
                         const style = document.createElement('style');
                         style.textContent = `
                             @keyframes fadeIn {
@@ -170,40 +172,18 @@
                         `;
                         document.head.appendChild(style);
                         
-                        // Start the animation
                         setTimeout(typeWriter, 500);
                     });
                 </script>
-                    <rect x="0" y="36" width="6" height="6" fill="#FFB6C1" class="logo-border-left"/>
-                    <!-- Right side -->
-                    <rect x="42" y="6" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
-                    <rect x="42" y="12" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
-                    <rect x="42" y="18" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
-                    <rect x="42" y="24" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
-                    <rect x="42" y="30" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
-                    <rect x="42" y="36" width="6" height="6" fill="#FFB6C1" class="logo-border-right"/>
-                    <!-- Bottom row -->
-                    <rect x="0" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="6" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="12" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="18" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="24" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="30" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="36" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
-                    <rect x="42" y="42" width="6" height="6" fill="#FFB6C1" class="logo-border-bottom"/>
             </div>
             
-            <!-- Page Title -->
             <h2 class="walkwin-title text-2xl font-medium text-neutral-textSec">Welcome to Bet Terminal</h2>
             
-            <!-- Helper Text -->
             <p class="walkwin-helper-text text-center max-w-md mx-auto">
-                Enter your username to access the Gensyn Network Prediction Layer and start trading on prediction markets.
+                Enter your username to access the Gensyn Network Prediction Layer.
             </p>
 
-            <!-- Form -->
             <form class="walkwin-form" onsubmit="event.preventDefault(); enterMarket();">
-                <!-- Input Field -->
                 <div class="walkwin-input-group">
                     <label for="username-input" class="walkwin-input-label">Username</label>
                     <input 
@@ -218,7 +198,6 @@
                     </p>
                 </div>
 
-                <!-- Primary Button -->
                 <button 
                     type="submit" 
                     onclick="enterMarket()" 
@@ -228,23 +207,16 @@
                 </button>
             </form>
 
-            <!-- Divider -->
             <div class="walkwin-divider">
-                <span>Or</span>
+                <span>Welcome</span>
             </div>
 
-            <!-- Social Buttons -->
             <div class="walkwin-social-buttons">
-                <button class="walkwin-social-button walkwin-wallet-button" onclick="alert('Wallet connection is just for fun - no real transactions!')">
-                    <i data-lucide="wallet" class="walkwin-social-icon"></i>
-                    Connect Wallet
-                </button>
-                <p class="walkwin-wallet-note">
-                    Don't connect wallet its all fun for now
-                </p>
+                <div id="userGreeting" class="text-brand text-sm font-medium">
+                    Hey, <span id="username">Player</span>!
+                </div>
             </div>
 
-            <!-- System Status -->
             <div class="walkwin-status">
                 <span class="walkwin-status-item">
                     <div class="walkwin-status-dot walkwin-status-online"></div>
@@ -256,19 +228,15 @@
                 </span>
             </div>
 
-            <!-- Footer Text -->
             <p class="walkwin-footer-text">
                 Built by <a href="https://x.com/rimtempestx" target="_blank" rel="noopener noreferrer" class="walkwin-footer-link">Tempest</a>
             </p>
         </div>
     </div>
 
-    <!-- View: Dashboard (Trading Terminal) -->
     <div id="view-market" class="hidden min-h-screen flex bg-neutral-bg">
-        <!-- Mobile Menu Overlay (hidden by default) -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 z-40 hidden md:hidden"></div>
         
-        <!-- Modern Mobile Menu Button (fixed at top left on mobile) -->
         <button id="mobile-menu-button" class="fixed top-3 left-3 w-11 h-11 bg-neutral-surface/90 hover:bg-neutral-surface flex flex-col items-center justify-center rounded-xl border border-neutral-border/50 z-40 md:hidden transition-all duration-300 ease-out shadow-lg hover:shadow-xl hover:scale-105 group overflow-hidden">
             <div class="relative w-5 h-5 flex flex-col justify-between my-1.5">
                 <span class="block w-5 h-0.5 bg-neutral-text rounded-full transition-all duration-300 transform group-hover:translate-y-1.5 group-hover:rotate-45"></span>
@@ -277,21 +245,12 @@
             </div>
             <span class="absolute -bottom-6 text-[9px] font-medium text-neutral-textMuted opacity-0 group-hover:opacity-100 transition-opacity duration-200">Menu</span>
         </button>
-        <style>
-            #mobile-menu-button:hover .hamburger-line {
-                background-color: #bf634b; /* brand color */
-            }
-            #mobile-menu-button:active {
-                transform: scale(0.95);
-            }
-        </style>
         
-        <!-- Sidebar -->
         <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 h-screen bg-neutral-bgElevated border-r border-neutral-border flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50 md:z-10 overflow-y-auto">
             <div class="h-16 flex items-center px-6 border-b border-neutral-border gap-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-brand">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2H14V4H16V6H18V8H20V10H22V14H20V16H18V18H16V20H14V22H10V20H8V18H6V16H4V14H2V10H4V8H6V6H8V4H10V2ZM10 6H14V8H16V10H18V14H16V16H14V18H10V16H8V14H6V10H8V8H10V6Z" fill="currentColor"/>
-                    </svg>
+                </svg>
                 <span class="font-bold text-neutral-text tracking-tight">GENSYN</span>
             </div>
 
@@ -346,15 +305,12 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="flex-1 flex flex-col h-screen overflow-hidden">
-            <!-- Topbar -->
             <header class="h-16 bg-neutral-bgElevated border-b border-neutral-border flex items-center justify-between px-6 shrink-0 sticky top-0 z-10">
                 <div class="flex items-center gap-4 flex-1">
                     <button id="mobile-sidebar-toggle" class="md:hidden text-neutral-text hover:text-neutral-textSec transition-colors">
                         <i data-lucide="menu" class="w-5 h-5"></i>
                     </button>
-                    <!-- Search Bar -->
                     <div class="relative w-full max-w-md hidden md:block">
                         <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-textMuted"></i>
                         <input type="text" placeholder="Search markets, assets, or events..." class="w-full bg-neutral-bg border border-neutral-border rounded-full pl-10 pr-4 py-1.5 text-sm text-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
@@ -362,7 +318,6 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <!-- Metrics Ticker -->
                     <div class="hidden lg:flex items-center gap-4 mr-4 text-xs font-mono border-r border-neutral-border pr-6">
                         <div class="flex flex-col items-end">
                             <span class="text-neutral-textMuted">NETWORK VOL</span>
@@ -372,23 +327,19 @@
                             <span class="text-neutral-textMuted">ACTIVE NODES</span>
                             <span class="text-brand">40,123</span>
                         </div>
-                        <div class="flex flex-col items-end">
-                            <span class="text-neutral-textMuted">ETH/USD</span>
-                            <span class="text-semantic-success">$3,420.50</span>
-                        </div>
                     </div>
                     
                     <button class="w-8 h-8 flex items-center justify-center text-neutral-textSec hover:bg-neutral-surfaceHover rounded-full transition-colors relative">
                         <i data-lucide="bell" class="w-4 h-4"></i>
                         <span class="absolute top-1.5 right-2 w-2 h-2 bg-brand rounded-full border border-neutral-bgElevated"></span>
                     </button>
-                    <button class="bg-brand hover:bg-brand-light text-white px-4 py-1.5 rounded-md text-sm font-medium transition-colors shadow-elevation-sm">Connect Wallet</button>
+                    <div id="headerGreeting" class="text-white text-sm font-medium">
+                        Hey, <span id="headerUsername">Player</span>!
+                    </div>
                 </div>
             </header>
 
-            <!-- Scrollable Content -->
             <div class="flex-1 overflow-y-auto p-6 md:p-8">
-                <!-- Page Header -->
                 <div class="flex justify-between items-end mb-8">
                     <div>
                         <h2 class="text-2xl font-bold text-neutral-text tracking-tight mb-1">Market Overview</h2>
@@ -401,12 +352,9 @@
                     </div>
                 </div>
 
-                <!-- Market Grid -->
                 <div id="market-grid" class="grid grid-cols-1 gap-3 p-3 sm:gap-4 sm:p-4 sm:grid-cols-2 lg:grid-cols-3 lg:p-6 overflow-y-auto flex-1">
-                    <!-- Cards injected via JS -->
-                </div>
+                    </div>
                 
-                <!-- Bet Card Footer -->
                 <div class="mt-12 pt-8 border-t border-neutral-border/50 text-center animate-fade-in">
                     <a href="https://x.com/rimtempestx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-brand hover:text-brand-light transition-colors font-medium group">
                         <span>Made By Tempest</span>
@@ -418,85 +366,75 @@
         </main>
     </div>
 
-    <!-- Modal: Trade Execution -->
-    <div id="bet-modal" class="fixed inset-0 bg-neutral-bg/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-neutral-bgElevated w-full max-w-lg border border-neutral-border rounded-xl shadow-elevation-xl overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="bet-modal-content">
+    <div id="bet-modal" class="fixed inset-0 bg-neutral-bg/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="hyper-panel w-full max-w-lg relative overflow-hidden transform scale-95 opacity-0 transition-all duration-200" id="bet-modal-content">
             
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center p-5 border-b border-neutral-border">
-                <div>
-                    <span class="text-xs font-mono text-brand font-medium tracking-wide">EXECUTION PANEL</span>
-                    <h3 class="text-lg font-semibold text-white mt-1">Place Order</h3>
+            <div class="absolute inset-0 pointer-events-none z-0 hyper-scanline opacity-10"></div>
+            
+            <div class="relative z-10 flex justify-between items-center p-6 border-b-2 border-hyper-orange bg-hyper-bgDark/50">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="terminal" class="text-hyper-green w-6 h-6 animate-pulse-slow"></i>
+                    <div>
+                        <span class="block text-[10px] font-bold text-hyper-orange tracking-[0.2em] uppercase">Gensyn Protocol // V1.0</span>
+                        <h3 class="text-xl font-bold text-hyper-green font-mono tracking-tight leading-none mt-1">TRANSMIT SIGNAL</h3>
+                    </div>
                 </div>
-                <button onclick="closeModal()" class="text-neutral-textMuted hover:text-white p-2 hover:bg-neutral-surfaceHover rounded-md transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <button onclick="closeModal()" class="text-hyper-green hover:text-hyper-orange transition-colors p-2 hover:bg-hyper-greenDim border border-transparent hover:border-hyper-orange">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
             </div>
             
-            <div class="p-6">
-                <!-- Market Context -->
-                <div class="mb-6">
-                    <p id="modal-topic" class="text-base font-medium text-neutral-text mb-4 leading-relaxed">...</p>
+            <div class="p-8 relative z-10">
+                <div class="mb-8 p-4 border-l-2 border-hyper-green bg-hyper-greenDim/5">
+                    <span class="block text-[10px] font-bold text-hyper-green mb-2 tracking-widest uppercase opacity-70">Query Protocol:</span>
+                    <p id="modal-topic" class="text-lg font-medium text-white font-mono leading-relaxed">...</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <button id="btn-yes" onclick="selectSide('yes')" class="hyper-btn group relative h-32 flex flex-col items-center justify-center border-2 border-hyper-border hover:border-hyper-green bg-hyper-bgDark transition-all duration-200">
+                        <div class="absolute top-2 left-2 w-2 h-2 bg-hyper-border group-hover:bg-hyper-green transition-colors"></div>
+                        <div class="absolute bottom-2 right-2 w-2 h-2 bg-hyper-border group-hover:bg-hyper-green transition-colors"></div>
+                        <span class="text-4xl font-bold font-mono text-neutral-500 group-hover:text-hyper-green mb-2 transition-colors">YES</span>
+                        <span class="text-[10px] uppercase tracking-widest text-neutral-600 group-hover:text-hyper-green transition-colors">Long Signal</span>
+                    </button>
                     
-                    <div class="flex bg-neutral-bg p-1 rounded-lg border border-neutral-border">
-                        <button id="btn-yes" onclick="selectSide('yes')" class="flex-1 py-3 rounded-md text-sm font-bold transition-all flex items-center justify-center gap-2 text-neutral-textMuted hover:text-white">
-                            <span>YES</span>
-                            <span class="font-mono text-xs opacity-70">LONG</span>
-                        </button>
-                        <button id="btn-no" onclick="selectSide('no')" class="flex-1 py-3 rounded-md text-sm font-bold transition-all flex items-center justify-center gap-2 text-neutral-textMuted hover:text-white">
-                            <span>NO</span>
-                            <span class="font-mono text-xs opacity-70">SHORT</span>
-                        </button>
+                    <button id="btn-no" onclick="selectSide('no')" class="hyper-btn group relative h-32 flex flex-col items-center justify-center border-2 border-hyper-border hover:border-hyper-orange bg-hyper-bgDark transition-all duration-200">
+                        <div class="absolute top-2 left-2 w-2 h-2 bg-hyper-border group-hover:bg-hyper-orange transition-colors"></div>
+                        <div class="absolute bottom-2 right-2 w-2 h-2 bg-hyper-border group-hover:bg-hyper-orange transition-colors"></div>
+                        <span class="text-4xl font-bold font-mono text-neutral-500 group-hover:text-hyper-orange mb-2 transition-colors">NO</span>
+                        <span class="text-[10px] uppercase tracking-widest text-neutral-600 group-hover:text-hyper-orange transition-colors">Short Signal</span>
+                    </button>
+                </div>
+
+                <div class="mb-8 flex items-center justify-between border-t border-b border-hyper-border py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 bg-hyper-green rounded-full animate-pulse"></div>
+                        <span class="text-xs font-mono text-hyper-green">SIGNAL STRENGTH: MAX</span>
+                    </div>
+                    <div class="text-xs font-mono text-hyper-orange">
+                        [ READY TO TRANSMIT ]
                     </div>
                 </div>
 
-                <!-- Inputs -->
-                <div class="space-y-4 mb-8">
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <label class="text-xs font-medium text-neutral-textSec">Order Size</label>
-                            <span class="text-xs text-neutral-textMuted font-mono">Bal: 0.00 ETH</span>
-                        </div>
-                        <div class="relative">
-                            <input type="number" id="bet-amount" class="w-full bg-neutral-bg border border-neutral-border rounded-md pl-4 pr-12 py-3 text-white font-mono placeholder-neutral-textMuted focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all" placeholder="0.00">
-                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-neutral-textTer font-mono">ETH</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Summary Stats -->
-                    <div class="bg-neutral-surface rounded-md p-3 border border-neutral-border/50 space-y-2">
-                        <div class="flex justify-between text-xs">
-                            <span class="text-neutral-textMuted">Potential Payout</span>
-                            <span class="text-semantic-success font-mono font-medium">0.00 ETH (+0.0%)</span>
-                        </div>
-                        <div class="flex justify-between text-xs">
-                            <span class="text-neutral-textMuted">Fees (0.5%)</span>
-                            <span class="text-neutral-textSec font-mono">0.00 ETH</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="flex gap-3">
-                    <button onclick="closeModal()" class="flex-1 border border-neutral-border hover:bg-neutral-surfaceHover text-neutral-text font-medium py-3.5 rounded-lg transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                        <span>Go Back</span>
-                    </button>
-                    <button onclick="confirmBet()" class="flex-1 bg-brand hover:bg-brand-light text-white font-semibold py-3.5 rounded-lg shadow-elevation-md transition-all flex items-center justify-center gap-2">
-                        <span>Execute Trade</span>
-                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    </button>
+                <button onclick="confirmBet()" class="w-full bg-hyper-orange text-hyper-bgDark font-bold text-lg py-4 border-2 border-hyper-orange hover:bg-hyper-orange/90 hover:shadow-hyper-glow-orange transition-all duration-200 uppercase tracking-widest font-mono flex items-center justify-center gap-3">
+                    <span>Initiate Transmission</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+                
+                <div class="mt-4 text-center">
+                    <span class="text-[10px] text-neutral-500 font-mono uppercase">Hash: <span class="text-neutral-400">0x...Encryption_Secure</span></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- View: Receipt/Card -->
     <div id="view-card" class="hidden fixed inset-0 bg-neutral-bg/95 z-[60] flex flex-col items-center justify-center p-4 overflow-y-auto">
         <div class="text-center mb-8 animate-fade-in">
             <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-semantic-successDim text-semantic-success mb-4 border border-semantic-success/20">
-                <i data-lucide="check" class="w-6 h-6"></i>
+                <i data-lucide="radio" class="w-6 h-6"></i>
             </div>
-            <h2 class="text-2xl font-bold text-white">Order Executed</h2>
-            <p class="text-neutral-textSec text-sm mt-1">Transaction hash confirmed on Gensyn Network.</p>
+            <h2 class="text-2xl font-bold text-white">Transmission Complete</h2>
+            <p class="text-neutral-textSec text-sm mt-1">Prediction recorded on Gensyn Network.</p>
         </div>
 
         <div class="relative group shadow-elevation-xl">
@@ -513,7 +451,6 @@
         </div>
     </div>
 
-    <!-- External JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
